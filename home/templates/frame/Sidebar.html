@@ -1,0 +1,79 @@
+<!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
+<!-- Add "fixed" class to make the sidebar fixed always to the browser viewport. -->
+<!-- Adding class "toggle-others" will keep only one menu item open at a time. -->
+<!-- Adding class "collapsed" collapse sidebar root elements and show only icons. -->
+<div class="sidebar-menu toggle-others fixed">
+    <div class="sidebar-menu-inner">
+        <header class="logo-env">
+            <!-- logo -->
+            <div class="logo">
+                <a href="" class="logo-expanded">
+              <img src="../static/images/logo_F.png" width="100" alt="" />
+            </a>
+                <a href="" class="logo-collapsed">
+              <img src="../static/images/logo_F.png" width="60" alt="" />
+            </a>
+            </div>
+            <!-- This will toggle the mobile menu and will be visible only on mobile devices -->
+            <div class="mobile-menu-toggle visible-xs">
+                <a href="#" data-toggle="user-info-menu">
+              <i class="fa-bell-o"></i>
+              <span class="badge badge-success">7</span>
+            </a>
+                <a href="#" data-toggle="mobile-menu">
+              <i class="fa-bars"></i>
+            </a>
+            </div>
+        </header>
+        <ul id="main-menu" class="main-menu">
+            <!-- add class "multiple-expanded" to allow multiple submenus to open -->
+            <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
+            <li><a href="/dataViews/"><i class="fa-globe"></i><span class="title">大数据观</span></a></li>
+            <li>
+                <a href="/Reports/"><i class="fa-area-chart"></i><span class="title">数据分析</span></a>
+                <ul>
+                    <li><a href=""><i></i><span class="title">存量数据统计</span></a></li>
+                    <li><a href=""><i></i><span class="title">增量数据统计</span></a></li>
+                    <li><a href=""><i></i><span class="title">注销数据统计</span></a></li>
+                    <li><a href=""><i></i><span class="title">自定行业统计</span></a></li>
+                    <li><a href=""><i></i><span class="title">内资外资统计</span></a></li>
+                    <li><a href=""><i></i><span class="title">企业迁移统计</span></a></li>
+                    <li><a href=""><i></i><span class="title">企业增资统计</span></a></li>
+                    <li><a href=""><i></i><span class="title">内外资来源地</span></a></li>
+                    <li><a href=""><i></i><span class="title">明星企业统计</span></a></li>
+                    <li><a href=""><i></i><span class="title">战略新兴产业</span></a></li>
+                    <li><a href=""><i></i><span class="title">社保及公积金</span></a></li>
+                </ul>
+            </li>
+            <li><a href=""><i class="fa-sitemap"></i><span>数据挖掘</span></a>
+                <ul>
+                    <li><a href=""><i></i><span>地址标准化</span></a></li>
+                    <li><a href=""><i></i><span>实际控股人</span></a></li>
+                    <li><a href=""><i></i><span>产业划分</span></a>
+                        <ul>
+                            <li><a href=""><i></i><span>高端装备制造业</span></a></li>
+                            <li><a href=""><i></i><span>战略新兴产业</span></a></li>
+                        </ul>
+                    </li>
+                    <li><a href=""><i></i><span>四同识别</span></a></li>
+                    <li><a href=""><i></i><span>经营范围标准化</span></a></li>
+                </ul>
+            </li>
+            <li>
+                <a href=""><i class="fa-files-o"></i><span class="title">批量数据提取</span></a>
+                <ul>
+                    <li><a href=""><i></i><span class="title">月报数据</span></a></li>
+                    <li><a href=""><i></i><span class="title">季报数据</span></a></li>
+                    <li><a href=""><i></i><span class="title">自定义抽取</span></a></li>
+                </ul>
+            </li>
+            <!--
+              <span class="title">Extra</span>
+              <span class="label label-success pull-right">5</span>
+              <span class="label label-purple pull-right hidden-collapsed">New Items</span>
+              <span class="label label-warning pull-right">4</span>
+              <span class="label label-danger pull-right">4</span>
+            -->
+        </ul>
+    </div>
+</div>
