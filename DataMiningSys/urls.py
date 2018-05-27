@@ -23,4 +23,5 @@ urlpatterns = [
     #url(r'^home/', include('home.urls')),
     url(r'^$', views.index,name='index'),
     url(r'^login/$',views.login,name='login'),
+    url(r'^apis/$',api.apis,name='apis'),
 ]

@@ -5,5 +5,6 @@ from django.db import models
 class webusers(models.Model):
     username = models.CharField(max_length=30)
     pwd      = models.CharField(max_length=128)
+    right    = models.IntegerField(default=0)
     def __str__(self):# 在Python3中用 __str__ 代替 __unicode__
         return self.username

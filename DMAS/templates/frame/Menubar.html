@@ -6,7 +6,7 @@
             <a href="#" data-toggle="sidebar">
               <i class="fa-bars"></i>
             </a>
-        </li>        
+        </li>
     </ul>
     <!-- Right links for user info navbar -->
     <ul class="user-info-menu right-links list-inline list-unstyled">
@@ -19,48 +19,64 @@
                 </button>
             </form>
         </li>
+        {% if userinfo.uname == None %}
         <li><a href="/login/"><img src="../static/images/user-4.png" alt="user-image" class="img-circle img-inline userpic-32" width="28" /><span>  Login</span></a></li>
-        <!--
+        {% else %}
         <li class="dropdown user-profile">
             <a href="#" data-toggle="dropdown">
               <img src="../static/images/user-4.png" alt="user-image" class="img-circle img-inline userpic-32" width="28" />
               <span>
-                Arlind Nushi
+                {{userinfo.uname}}
                 <i class="fa-angle-down"></i>
               </span>
             </a>
             <ul class="dropdown-menu user-profile-menu list-unstyled">
-                <li>
-                    <a href="#edit-profile">
-                  <i class="fa-edit"></i>
-                  New Post
-                </a>
-                </li>
-                <li>
-                    <a href="#settings">
+                <li id="cannot">
+                    <a href="#">
                   <i class="fa-wrench"></i>
-                  Settings
+                  更改登录密码
                 </a>
                 </li>
-                <li>
-                    <a href="#profile">
-                  <i class="fa-user"></i>
-                  Profile
-                </a>
-                </li>
-                <li>
-                    <a href="#help">
-                  <i class="fa-info"></i>
-                  Help
-                </a>
-                </li>
-                <li class="last">
-                    <a href="extra-lockscreen.html">
+                <li class="last" id=logoutbtn>
+                    <a href="#">
                   <i class="fa-lock"></i>
-                  Logout
+                  退出登录
                 </a>
                 </li>
             </ul>
-        </li>-->
+        </li>
+        <script type="text/javascript">
+        $('#logoutbtn').click(function() {
+            $.ajax({
+                url: "../apis/",
+                method: 'POST',
+                dataType: 'json',
+                data: {
+                    methodname: 'logout',
+                    parameters: '{"nothing":"None"}'
+                },
+                success: function(resp) {
+                    window.location.href = '/';
+                }
+            });
+        });
+        $('#cannot').click(function() {
+            toastr.warning("暂时不能更改密码!", "提示", {
+                "closeButton": true,
+                "debug": false,
+                "positionClass": "toast-bottom-right",
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            });
+        });
+        </script>
+        {% endif %}
     </ul>
 </nav>

@@ -3104,7 +3104,6 @@ button.toast-close-button {
   transition-delay: 100ms;
 }
 .login-page .login-form.fade-in-effect.in {
-  left: 50%;
   zoom: 1;
   -webkit-opacity: 1;
   -moz-opacity: 1;

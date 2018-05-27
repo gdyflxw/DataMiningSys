@@ -45,6 +45,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfResponseMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -119,3 +120,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#Sessions Setting
+SESSION_COOKIE_AGE = 600000  # Session的cookie失效日期（2周） 默认1209600秒
+SESSION_EXPIRE_AT_BROWSER_CLOSE =True  # 是否关闭浏览器使得Session过期
+SESSION_SAVE_EVERY_REQUEST = True  # 是否刷新Session

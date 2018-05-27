@@ -6,7 +6,10 @@ from django.http import HttpResponse
 #    return HttpResponse("Hello, world. You're at the polls index.")
 
 def index(request):
-    return render(request,'index.html')
+    uname=request.session.get('username',None)
+    uright=request.session.get('right',0)
+    userinfo={'uname':uname,'uright':uright}
+    return render(request,'index.html',{'userinfo':userinfo})
 
 def login(request):
     return render(request,'login.html')
