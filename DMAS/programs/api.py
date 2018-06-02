@@ -37,6 +37,9 @@ def apis(requests):
     if methodname=='monthlyinc':
         rs=monthlyinc(parameters)
 
+    #按行业统计注销的本期、同比、环比信息
+    if methodname=='cancelhy':
+        rs=cancelhy(parameters)
 
     return HttpResponse(json.dumps(rs,ensure_ascii=False),content_type="application/json")
     

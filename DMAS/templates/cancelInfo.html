@@ -31,8 +31,26 @@
         {% include "frame/Sidebar.html" %}
         <div class="main-content">
             {% include "frame/Menubar.html" %}
-            <div>
-                insert somthings here!
+<div class="panel panel-default" style="height:607px">
+                <div class="panel-heading">
+                    <h3 class="panel-title">存量数据统计</h3>
+                    <div class="panel-options">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tab-1" data-toggle="tab">注销统计信息</a></li>
+                            <li><a href="#tab-2" data-toggle="tab">注销明细信息</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab-1">
+
+                        </div>
+                        <div class="tab-pane" id="tab-2">
+                        
+                        </div>
+                    </div>
+                </div>
             </div>
             {% include "frame/Footer.html" %}
         </div>

@@ -95,3 +95,36 @@ def monthlyinc(params):
     df.fillna('',inplace=True)    
     arr={"items":df.to_dict("records")}
     return arr
+
+def cancelhy(params):
+    xzqh,enttype,nowdateB,nowdateE,lastdateB,lastdateE,lastYdateB,lastYdateE=params['xzqh'],params['enttype'],params['nowdateB'],params['nowdateE'],params['lastdateB'],params['lastdateE'],params['lastYdateB'],params['lastYdateE']
+    if enttype=='企业':
+        jglxstr="and jglxdm in ('1','2')"
+    elif enttype1=='个体户':
+        jglxstr="and jglxdm in ('B')"
+    else:
+        jglxstr="and jglxdm in ('1','2','B')"
+    if xzqh=='全市':
+        xzqhstr=''
+    elif xzqh=='南山区':
+        xzqhstr="and xzqh_sp in('南山非前海','南山前海')  "
+    else:
+        xzqhstr="and xzqh_sp='%s'  "%xzqh
+    sql="""
+        with m as (select distinct hy,hyname from base where ((zxdate between '%s' and '%s') or (zxdate between '%s' and '%s') or (zxdate between '%s' and '%s')) %s %s),
+             a as (select hy,count(*) cn,sum(zczj_sp) sm from base where zxdate between '%s' and '%s' %s %s group by hyname,hy),
+             b as (select hy,count(*) cn,sum(zczj_sp) sm from base where zxdate between '%s' and '%s' %s %s group by hyname,hy),
+             c as (select hy,count(*) cn,sum(zczj_sp) sm from base where zxdate between '%s' and '%s' %s %s group by hyname,hy),
+        select m.hy as 行业门类代码,m.hyname as 行业门类,
+        a.cn as 本期数量,
+        a.sm as 本期金额,
+        b.cn as 同比数量,
+        b.sm as 同比金额,
+        c.cn as 环比数量,
+        c.sm as 环比金额
+        from m left join a on m.hy=a.hy left join b on m.hy=b.hy left join c on m.hy=c.hy
+        """%(nowdateB,nowdateE,lastdateB,lastdateE,lastYdateB,lastYdateE,jglxstr,xzqhstr,nowdateB,nowdateE,jglxstr,xzqhstr,lastdateB,lastdateE,jglxstr,xzqhstr,lastYdateB,lastYdateE,jglxstr,xzqhstr)
+    df=db_query(sql)
+    df.fillna('',inplace=True)
+    arr={"items":df.to_dict("records")}
+    return arr
