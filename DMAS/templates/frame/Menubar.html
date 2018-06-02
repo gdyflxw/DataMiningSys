@@ -1,5 +1,5 @@
 <!-- User Info, Notifications and Menu Bar -->
-<nav class="navbar user-info-navbar" role="navigation">
+<nav class="navbar user-info-navbar" role="navigation" style="min-height: 43px">
     <!-- Left links for user info navbar -->
     <ul class="user-info-menu left-links list-inline list-unstyled">
         <li class="hidden-sm hidden-xs">
@@ -19,14 +19,14 @@
                 </button>
             </form>
         </li>
-        {% if userinfo.uname == None %}
+        {% if request.session.username == None %}
         <li><a href="/login/"><img src="../static/images/user-4.png" alt="user-image" class="img-circle img-inline userpic-32" width="28" /><span>  Login</span></a></li>
         {% else %}
         <li class="dropdown user-profile">
             <a href="#" data-toggle="dropdown">
               <img src="../static/images/user-4.png" alt="user-image" class="img-circle img-inline userpic-32" width="28" />
               <span>
-                {{userinfo.uname}}
+                {{request.session.username}}
                 <i class="fa-angle-down"></i>
               </span>
             </a>

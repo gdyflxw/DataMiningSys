@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Xenon Boostrap Admin Panel" />
+    <meta name="author" content="lixuanwen" />
+    <title>商事登记与代码应用研究所</title>
+    <!--<link rel="stylesheet" href="http://fonts.useso.com/css?family=Arimo:400,700,400italic">
+    <link rel="stylesheet" href="../static/css/fonts/linecons/css/linecons.css">-->
+    <link rel="stylesheet" href="../static/css/font-awesome.css">
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+    <link rel="stylesheet" href="../static/css/xenon-core.css">
+    <link rel="stylesheet" href="../static/css/xenon-forms.css">
+    <link rel="stylesheet" href="../static/css/xenon-components.css">
+    <link rel="stylesheet" href="../static/css/xenon-skins.css">
+    <link rel="stylesheet" href="../static/css/custom.css">
+    <link rel="stylesheet" href="../static/css/daterangepicker-bs3.css">
+    <script src="../static/js/jquery-3.3.1.js"></script>
+    <script src="../static/js/custom.js"></script>
+    <link rel="stylesheet" href="../static/js/Devexpress-web/css/dx.common.css">
+    <link rel="stylesheet" href="../static/js/Devexpress-web/css/dx.light.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body class="page-body">
+    <div class="page-container">
+        {% include "frame/Sidebar.html" %}
+        <div class="main-content">
+            {% include "frame/Menubar.html" %}
+            <div class="panel panel-default" style="height:607px">
+                <div class="panel-heading">
+                    <h3 class="panel-title">增量数据统计</h3>
+                    <div class="panel-options">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tab-1" data-toggle="tab">行政区划日增量</a></li>
+                            <li><a href="#tab-2" data-toggle="tab">行政区划月增量</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab-1">
+                            <form role="form" class="form-inline">
+                                <div class="form-group">
+                                    <label class="control-label">请输入起止日期</label>
+                                </div>
+                                <div class="form-group">
+                                    <!--
+                                    <input id="dailyinc_dr" class="daterange daterange-inline add-ranges" data-format="YYYY-MM-DD" value="2018-04-01 - 2018-04-30" />-->
+                                    <div class="daterange daterange-inline add-ranges" data-format="YYYY-MM-DD" data-start-date="2014-09-15" data-end-date="2015-09-15">
+                                        <i class="fa-calendar"></i>
+                                        <span id="dailyinc_dr">1987-09-15 - 2017-09-15</span>
+                                    </div>
+                                    <script type="text/javascript">
+                                    jQuery(document).ready(function($) {
+                                        var btime = moment().subtract(1, 'month').format('YYYY-MM-DD');
+                                        var etime = moment().subtract(1, 'days').format('YYYY-MM-DD');
+                                        $('#dailyinc_dr').parent().attr('data-start-date', btime);
+                                        $('#dailyinc_dr').parent().attr('data-end-date', etime);
+                                        $('#dailyinc_dr').html(btime + ' - ' + etime);
+                                    });
+                                    </script>
+                                </div>
+                                <!--<div class="form-group"></div>-->
+                                <div class="form-group">
+                                    <label class="control-label">请选择行政区划</label>
+                                </div>
+                                <div class="form-group">
+                                    <script type="text/javascript">
+                                    jQuery(document).ready(function($) {
+                                        $("#sboxit-1").selectBoxIt().on('open', function() {
+                                            // Adding Custom Scrollbar
+                                            $(this).data('selectBoxSelectBoxIt').list.perfectScrollbar();
+                                        });
+                                        $("#sboxit-1").parent().children("span").children("span").attr("style", "width:182px");
+
+                                    });
+                                    </script>
+                                    <select class="form-control" id="sboxit-1">
+                                        <option value="福田区">福田区</option>
+                                        <option value="南山区">南山区</option>
+                                        <option value="宝安区">宝安区</option>
+                                        <option value="罗湖区">罗湖区</option>
+                                        <option value="龙岗区">龙岗区</option>
+                                        <option value="大鹏区">大鹏区</option>
+                                        <option value="龙华区">龙华区</option>
+                                        <option value="盐田区">盐田区</option>
+                                        <option value="光明区">光明区</option>
+                                        <option value="坪山区">坪山区</option>
+                                        <option value="南山非前海">南山非前海</option>
+                                        <option value="南山前海">南山前海</option>
+                                        <option value="全市">全市</option>
+                                    </select>
+                                </div>
+                                <div class="form-group pull-right">
+                                    <button id="dailyinc_btn" class="btn btn-secondary btn-single" type="button">查询</button>
+                                </div>
+                            </form>
+                            <div id="chartContainer-1" style="padding-top:10px;height:360px"></div>
+                            <div id="chartContainer-2" style="padding-top:10px;height:120px"></div>
+                        </div>
+                        <div class="tab-pane" id="tab-2">
+                            <form role="form" class="form-inline">
+                                <div class="form-group">
+                                    <label class="control-label">请输入起止日期</label>
+                                </div>
+                                <div class="form-group" style="width:189.56px">
+                                    <!--
+                                    <input id="monthly_dr" class="daterange daterange-inline add-ranges" data-format="YYYY-MM-DD" value="2018-04-01 - 2018-04-30" />-->
+                                    <div class="daterange daterange-inline add-ranges" data-format="YYYY-MM" data-start-date="2014-09" data-end-date="2015-09">
+                                        <i class="fa-calendar"></i>
+                                        <span id="monthly_dr">1987-09 - 2017-09</span>
+                                    </div>
+                                    <script type="text/javascript">
+                                    jQuery(document).ready(function($) {
+                                        var btime = moment().subtract(12, 'month').format('YYYY-MM');
+                                        var etime = moment().subtract(0, 'days').format('YYYY-MM');
+                                        $('#monthly_dr').parent().attr('data-start-date', btime);
+                                        $('#monthly_dr').parent().attr('data-end-date', etime);
+                                        $('#monthly_dr').html(btime + ' - ' + etime);
+                                    });
+                                    </script>
+                                </div>
+                                <!--<div class="form-group"></div>-->
+                                <div class="form-group">
+                                    <label class="control-label">请选择行政区划</label>
+                                </div>
+                                <div class="form-group">
+                                    <script type="text/javascript">
+                                    jQuery(document).ready(function($) {
+                                        $("#sboxit-2").selectBoxIt().on('open', function() {
+                                            // Adding Custom Scrollbar
+                                            $(this).data('selectBoxSelectBoxIt').list.perfectScrollbar();
+                                        });
+                                        $("#sboxit-2").parent().children("span").children("span").attr("style", "width:182px");
+
+                                    });
+                                    </script>
+                                    <select class="form-control" id="sboxit-2">
+                                        <option value="福田区">福田区</option>
+                                        <option value="南山区">南山区</option>
+                                        <option value="宝安区">宝安区</option>
+                                        <option value="罗湖区">罗湖区</option>
+                                        <option value="龙岗区">龙岗区</option>
+                                        <option value="大鹏区">大鹏区</option>
+                                        <option value="龙华区">龙华区</option>
+                                        <option value="盐田区">盐田区</option>
+                                        <option value="光明区">光明区</option>
+                                        <option value="坪山区">坪山区</option>
+                                        <option value="南山非前海">南山非前海</option>
+                                        <option value="南山前海">南山前海</option>
+                                        <option value="全市">全市</option>
+                                        <option value="全市">全市各区</option>
+                                    </select>
+                                </div>
+                                <div class="form-group pull-right">
+                                    <button id="monthly_btn" class="btn btn-secondary btn-single" type="button">查询</button>
+                                </div>
+                            </form>
+                            <div id="gridContainer-2" style="padding-top:10px;height:480px"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% include "frame/Footer.html" %}
+        </div>
+    </div>
+    <!-- Imported styles on this page -->
+    <!-- Bottom Scripts -->
+    <script src="../static/js/bootstrap.js"></script>
+    <script src="../static/js/TweenMax.js"></script>
+    <script src="../static/js/resizeable.js"></script>
+    <script src="../static/js/joinable.js"></script>
+    <script src="../static/js/xenon-api.js"></script>
+    <script src="../static/js/xenon-toggles.js"></script>
+    <script src="../static/js/toastr/toastr.js"></script>
+    <script src="../static/js/moment.js"></script>
+    <!-- Imported scripts on this page -->
+    <script src="../static/js/jquery-ui/jquery-ui.js"></script>
+    <script src="../static/js/daterangepicker.js"></script>
+    <script src="../static/js/bootstrap-datepicker.js"></script>
+    <script src="../static/js/jquery.selectBoxIt.min.js"></script>
+    <script src="../static/js/Devexpress-web/js/jszip.js"></script>
+    <!--<script src="../static/js/Devexpress-web/js/cldr.js"></script>
+    <script src="../static/js/Devexpress-web/js/globalize.js"></script>-->
+    <script src="../static/js/Devexpress-web/js/dx.all.debug.js"></script>
+    <!-- JavaScripts initializations and stuff -->
+    <script src="../static/js/xenon-custom.js"></script>
+    <!--函数方法，数据调用-->
+    <script type="text/javascript">
+    $('#dailyinc_btn').click(function() {
+        var begintime, endtime, xzqh, p, filename;
+        begintime = $('#dailyinc_dr').text().split(' - ')[0];
+        endtime = $('#dailyinc_dr').text().split(' - ')[1];
+        xzqh = $("#sboxit-1").parent().children("span").children("span").text();
+        p = {
+            methodname: 'dailyinc',
+            parameters: '{"begintime":"' + begintime + '","endtime":"' + endtime + '","xzqh":"' + xzqh + '"}'
+        }
+        series = [{ name: "商事主体", argumentField: "成立日期", valueField: "商事主体" }, { name: "企业", argumentField: "成立日期", valueField: "企业" }, { name: "个体", argumentField: "成立日期", valueField: "个体" }]
+        getZoomLine(p, 'chartContainer-1', 'chartContainer-2', series)
+    });
+    $('#monthly_btn').click(function() {
+        var begintime, endtime, xzqh, p, filename;
+        begintime = $('#monthly_dr').text().split(' - ')[0];
+        endtime = $('#monthly_dr').text().split(' - ')[1];
+        xzqh = $("#sboxit-2").parent().children("span").children("span").text();
+        p = {
+            methodname: 'monthlyinc',
+            parameters: '{"begintime":"' + begintime + '","endtime":"' + endtime + '","xzqh":"' + xzqh + '"}'
+        }
+        filename = begintime.substr(0, 7) + "到" + endtime.substr(0, 7) + "增量数据"
+        var cols = ["行政区划", "统计月份", "商事主体增量", { dataField: "商事主体月增幅", format: "#.00%" }, "企业增量", { dataField: "企业月增幅", format: "#.00%" }, "个体数量", { dataField: "个体月增幅", format: "#.00%" }];
+        summarys = {};
+        getDataTable(p, 'gridContainer-2', filename, cols, summarys)
+    });
+    </script>
+</body>
+
+</html>

@@ -2,23 +2,46 @@ from django.http import HttpResponse
 from . import dbtools
 import json
 from ..models import webusers
-
+from DMAS.programs.getData import *
 
 def apis(requests):    
     methodname=requests.POST.get('methodname')
     parameters=json.loads(requests.POST.get('parameters'))
+    #登录
     if methodname=='login':
         result=login_check(parameters)
         userinfo=result['userinfo']
         requests.session['username']=userinfo['username']
         requests.session['right']=userinfo['right']
         rs=result['rs']
-        return HttpResponse(json.dumps(rs,ensure_ascii=False),content_type="application/json")
+        
+    #登出
     if methodname=='logout':
         requests.session['username']=None
         requests.session['right']=0
         rs={"info":"<strong>您已成功退出！</strong>"}
-        return HttpResponse(json.dumps(rs,ensure_ascii=False),content_type="application/json")
+
+    #按行政区划统计各月信息
+    if methodname=='xzqhpmon':
+        rs=xzqhpmon(parameters)
+
+    #按截止日期统计行政区划的信息
+    if methodname=='monpxzqh':
+        rs=monpxzqh(parameters)
+
+    #按行政区划统计行政区划的日增量
+    if methodname=='dailyinc':
+        rs=dailyinc(parameters)
+
+    #按截止日期统计16年1月到现在的月增量
+    if methodname=='monthlyinc':
+        rs=monthlyinc(parameters)
+
+
+    return HttpResponse(json.dumps(rs,ensure_ascii=False),content_type="application/json")
+    
+
+
 
 def login_check(p):
     uname=p['username']

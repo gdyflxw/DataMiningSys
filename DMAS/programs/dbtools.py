@@ -32,7 +32,7 @@ class dbtools:
 
     def db_query(self,sql,dbtype='mssql',conp=None):
         #conp=[username,pwd,host:port,databasename/oracleservicename,schema]
-        con=getconstr(self,dbtype,conp)
+        con=self.getconstr(dbtype,conp)
         if dbtype=='postgresql':sql="set search_path to %s;"%conp[4]+sql
         df=pd.read_sql(sql,con)
         return df
@@ -40,7 +40,7 @@ class dbtools:
     def db_write(self,df,tb_name,dbtype='mssql',conp=None,rora='replace'):
         cs=None
         if len(df)>20000:cs=10000
-        con=getconstr(self,dbtype,conp)
+        con=self.getconstr(dbtype,conp)
         dtypedict = {}
         for i,j in zip(df.columns, df.dtypes):
             if "object" in str(j):

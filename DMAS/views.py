@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.http import FileResponse
+import json
+
 
 # Create your views here.
 #def index(request):
@@ -16,3 +19,26 @@ def login(request):
 
 def dashboard(request):
     return render(request,'dashboard.html')
+
+def stockInfo(request):
+    return render(request,'stockInfo.html')
+
+def incInfo(request):
+    return render(request,'incInfo.html')
+
+def cancelInfo(request):
+    return render(request,'cancelInfo.html')
+
+
+def tmpjs(reuqest):
+    rs=json.load(open("E:/tmpjs.json",encoding='utf-8'))
+    return HttpResponse(json.dumps(rs,ensure_ascii=False),content_type="application/json")
+
+def download(request,filename):
+    print(filename)
+    filepath='F:/ShareFiles/'
+    file=open(filepath+filename,'rb')  
+    response =FileResponse(file)  
+    response['Content-Type']='application/octet-stream'  
+    response['Content-Disposition']='attachment;filename="%s"'%filename
+    return response

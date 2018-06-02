@@ -644,9 +644,9 @@ div.datepicker thead tr:first-child th.cw {
   border-color: #68b828;
 }
 .daterange-inline {
-  background: #f5f5f5;
+  /*background: #f5f5f5;*/
   border: 1px solid #e4e4e4;
-  padding: 10px;
+  padding: 5px;
   cursor: pointer;
 }
 .daterange-inline i {
@@ -1247,7 +1247,7 @@ html .select2-drop .select2-results li.select2-highlighted .select2-result-label
 }
 /* Styles that apply to all SelectBoxIt elements */
 .selectboxit-container * {
-  font: 14px Helvetica, Arial;
+  font: 14px Helvetica, Arial;  
   /* Prevents text selection */
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -1261,7 +1261,7 @@ html .select2-drop .select2-results li.select2-highlighted .select2-result-label
 }
 /* Button */
 .selectboxit-container .selectboxit {
-  width: 100% !important;
+  width: 100% /*!important*/;
   /* Width of the dropdown button */
   cursor: pointer;
   margin: 0;
@@ -1274,9 +1274,9 @@ html .select2-drop .select2-results li.select2-highlighted .select2-result-label
 /* Height and Vertical Alignment of Text */
 .selectboxit-container span,
 .selectboxit-container .selectboxit-options a {
-  height: 35px;
+  height: 32px;
   /* Height of the drop down */
-  line-height: 35px;
+  line-height: 32px;
   /* Vertically positions the drop down text */
   display: block;
 }
@@ -1306,7 +1306,7 @@ html .select2-drop .select2-results li.select2-highlighted .select2-result-label
   float: left;
   max-width: 100% !important;
   color: #7d7f7f;
-  font-size: 13px;
+  font-size: 14px;
 }
 .selectboxit .selectboxit-option-icon-container {
   margin-left: 5px;

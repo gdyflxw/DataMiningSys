@@ -20,8 +20,17 @@ from DMAS.programs import api
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    #url(r'^home/', include('home.urls')),
+
+    #以下为页面连接
     url(r'^$', views.index,name='index'),
     url(r'^login/$',views.login,name='login'),
+    url(r'^dashboard/$',views.dashboard,name='dashboard'),
+    url(r'^stockInfo/$',views.stockInfo,name='stockInfo'),
+    url(r'^incInfo/$',views.incInfo,name='incInfo'),
+    url(r'^cancelInfo/$',views.cancelInfo,name='cancelInfo'),
+    url(r'^tmpjs/$',views.tmpjs,name='tmpjs'),
+
+    #以下为API连接
     url(r'^apis/$',api.apis,name='apis'),
+    url(r'^download/(?P<filename>\w+\.\w{3,4})/$',views.download,name='download')
 ]
