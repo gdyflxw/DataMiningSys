@@ -19,8 +19,6 @@
     <link rel="stylesheet" href="../static/css/custom.css">  
     <script src="../static/js/jquery-3.3.1.js"></script>    
     <script src="../static/js/custom.js"></script>
-    <link rel="stylesheet" href="../static/js/Devexpress-web/css/dx.common.css">
-    <link rel="stylesheet" href="../static/js/Devexpress-web/css/dx.light.css">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -33,9 +31,9 @@
         {% include "frame/Sidebar.html" %}
         <div class="main-content">
             {% include "frame/Menubar.html" %}
-            <div class="panel panel-default" style="height:607px">
+<div class="panel panel-default" style="height:607px">
                 <div class="panel-heading">
-                    <h3 class="panel-title">注销数据统计</h3>
+                    <h3 class="panel-title">存量数据统计</h3>
                     <div class="panel-options">
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#tab-1" data-toggle="tab">注销统计信息</a></li>
@@ -46,160 +44,7 @@
                 <div class="panel-body">
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab-1">
-                            <div class="row">
-                                <div class="col-sm-6" style="border-right: 1px solid #dddddd;">
-                                    <form class="form-inline" role="form">
-                                        <div class="form-group">
-                                            <label class="control-label">起止日期</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <!--
-                                            <input id="xzqhpmon_dr" class="daterange daterange-inline add-ranges" data-format="YYYY-MM-DD" value="2018-04-01 - 2018-04-30" />-->
-                                            <div class="daterange daterange-inline add-ranges" data-format="YYYY-MM-DD" data-start-date="2014-09-15" data-end-date="2015-09-15">
-                                                <i class="fa-calendar"></i>
-                                                <span id="calcelhy_dr">2014-09-15 - 2015-09-15</span>
-                                            </div> 
-                                            <script type="text/javascript">
-                                            jQuery(document).ready(function($) {
-                                                var btime = moment().subtract(12, 'month').format('YYYY-MM-DD');
-                                                var etime = moment().subtract(1, 'days').format('YYYY-MM-DD');
-                                                $('#calcelhy_dr').parent().attr('data-start-date', btime);
-                                                $('#calcelhy_dr').parent().attr('data-end-date', etime);
-                                                $('#calcelhy_dr').html(btime + ' - ' + etime);
-                                            });
-                                            </script>
-                                        </div>
-                                        <!--<div class="form-group"></div>-->
-                                        <div class="form-group">
-                                            <label class="control-label">行政区划</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <script type="text/javascript">
-                                            jQuery(document).ready(function($) {
-                                                $("#sboxit-1").selectBoxIt().on('open', function() {
-                                                    // Adding Custom Scrollbar
-                                                    $(this).data('selectBoxSelectBoxIt').list.perfectScrollbar();
-                                                });
-                                                $("#sboxit-1").parent().children("span").children("span").attr("style", "width:100px");
-                                                $("#sboxit-2").selectBoxIt().on('open', function() {
-                                                    // Adding Custom Scrollbar
-                                                    $(this).data('selectBoxSelectBoxIt').list.perfectScrollbar();
-                                                });
-                                                $("#sboxit-2").parent().children("span").children("span").attr("style", "width:100px");
-                                            });
-                                            </script>
-                                            <select class="form-control" id="sboxit-1">
-                                                <option value="福田区">福田区</option>
-                                                <option value="南山区">南山区</option>
-                                                <option value="宝安区">宝安区</option>
-                                                <option value="罗湖区">罗湖区</option>
-                                                <option value="龙岗区">龙岗区</option>
-                                                <option value="大鹏区">大鹏区</option>
-                                                <option value="龙华区">龙华区</option>
-                                                <option value="盐田区">盐田区</option>
-                                                <option value="光明区">光明区</option>
-                                                <option value="坪山区">坪山区</option>
-                                                <option value="南山非前海">南山非前海</option>
-                                                <option value="南山前海">南山前海</option>
-                                                <option value="全市">全市</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="form-group">
-                                                <label class="control-label">主体类型</label>
-                                            </div>
-                                            <div class="form-group">
 
-                                                <select class="form-control" id="sboxit-2">
-                                                    <option value="商事主体">商事主体</option>
-                                                    <option value="企业">企业</option>
-                                                    <option value="个体">个体</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group pull-right">
-                                            <button id="calcelhy_btn" class="btn btn-secondary btn-single" type="button">查询</button>
-                                        </div>
-                                    </form>
-                                    <div id="gridContainer-1" style="padding-top:10px;height:480px"></div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <form class="form-inline" role="form">
-                                        <div class="form-group">
-                                            <label class="control-label">起止日期</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <!--
-                                            <input id="xzqhpmon_dr" class="daterange daterange-inline add-ranges" data-format="YYYY-MM-DD" value="2018-04-01 - 2018-04-30" />-->
-                                            <div class="daterange daterange-inline add-ranges" data-format="YYYY-MM-DD" data-start-date="2014-09-15" data-end-date="2015-09-15">
-                                                <i class="fa-calendar"></i>
-                                                <span id="calcelqh_dr">2014-09-15 - 2015-09-15</span>
-                                            </div> 
-                                            <script type="text/javascript">
-                                            jQuery(document).ready(function($) {
-                                                var btime = moment().subtract(12, 'month').format('YYYY-MM-DD');
-                                                var etime = moment().subtract(1, 'days').format('YYYY-MM-DD');
-                                                $('#calcelqh_dr').parent().attr('data-start-date', btime);
-                                                $('#calcelqh_dr').parent().attr('data-end-date', etime);
-                                                $('#calcelqh_dr').html(btime + ' - ' + etime);
-                                            });
-                                            </script>
-                                        </div>
-                                        <!--<div class="form-group"></div>-->
-                                        <div class="form-group">
-                                            <label class="control-label">行政区划</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <script type="text/javascript">
-                                            jQuery(document).ready(function($) {
-                                                $("#sboxit-3").selectBoxIt().on('open', function() {
-                                                    // Adding Custom Scrollbar
-                                                    $(this).data('selectBoxSelectBoxIt').list.perfectScrollbar();
-                                                });
-                                                $("#sboxit-3").parent().children("span").children("span").attr("style", "width:100px");
-                                                $("#sboxit-4").selectBoxIt().on('open', function() {
-                                                    // Adding Custom Scrollbar
-                                                    $(this).data('selectBoxSelectBoxIt').list.perfectScrollbar();
-                                                });
-                                                $("#sboxit-4").parent().children("span").children("span").attr("style", "width:100px");
-                                            });
-                                            </script>
-                                            <select class="form-control" id="sboxit-3">
-                                                <option value="福田区">福田区</option>
-                                                <option value="南山区">南山区</option>
-                                                <option value="宝安区">宝安区</option>
-                                                <option value="罗湖区">罗湖区</option>
-                                                <option value="龙岗区">龙岗区</option>
-                                                <option value="大鹏区">大鹏区</option>
-                                                <option value="龙华区">龙华区</option>
-                                                <option value="盐田区">盐田区</option>
-                                                <option value="光明区">光明区</option>
-                                                <option value="坪山区">坪山区</option>
-                                                <option value="南山非前海">南山非前海</option>
-                                                <option value="南山前海">南山前海</option>
-                                                <option value="全市">全市</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="form-group">
-                                                <label class="control-label">主体类型</label>
-                                            </div>
-                                            <div class="form-group">
-
-                                                <select class="form-control" id="sboxit-4">
-                                                    <option value="商事主体">商事主体</option>
-                                                    <option value="企业">企业</option>
-                                                    <option value="个体">个体</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group pull-right">
-                                            <button id="calcelqh_btn" class="btn btn-secondary btn-single" type="button">查询</button>
-                                        </div>
-                                    </form>
-                                    <div id="gridContainer-2" style="padding-top:10px;height:480px"></div>
-                                </div>
-                            </div>
                         </div>
                         <div class="tab-pane" id="tab-2">
                         
@@ -222,41 +67,10 @@
     <script src="../static/js/xenon-api.js"></script>
     <script src="../static/js/xenon-toggles.js"></script>
     <script src="../static/js/toastr/toastr.js"></script>
-    <script src="../static/js/moment.js"></script>
     <!-- Imported scripts on this page -->
     <script src="../static/js/jquery-ui/jquery-ui.js"></script>
-    <script src="../static/js/daterangepicker.js"></script>
-    <script src="../static/js/bootstrap-datepicker.js"></script>
-    <script src="../static/js/jquery.selectBoxIt.min.js"></script>
-    <script src="../static/js/Devexpress-web/js/jszip.js"></script>    
-    <script src="../static/js/Devexpress-web/js/dx.all.debug.js"></script>
     <!-- JavaScripts initializations and stuff -->
     <script src="../static/js/xenon-custom.js"></script>
-
-    <script type="text/javascript">
-        $('#calcelhy_btn').click(function() {
-            var p = {
-                methodname: 'calcelhy',
-                parameters: '{"endtime":"' + $('#monpxzqh_dt').val() + '","qianhai":"' + $("#monpxzqh_cb").prop('checked') + '"}'
-            }
-            var filename="截止到"+$('#monpxzqh_dt').val()+"各区划存量分布"
-            var cols = ["区域","主体总量","企业","个体",{dataField:"总量市占比",format:"#.00%"},{dataField:"企业市占比",format:"#.00%"},{dataField:"个体市占比",format:"#.00%"}];
-            var summarys={texts:{count:"",sum:"{0}"},totalItems:[{column:"区域",summaryType:"count",valueFormat:"合计"},{column:"主体总量",summaryType:"sum"},{column:"企业",summaryType:"sum"},{column:"个体",summaryType:"sum"},{column:"总量市占比",summaryType:"sum",valueFormat:"percent"},{column:"企业市占比",summaryType:"sum",valueFormat:"percent"},{column:"个体市占比",summaryType:"sum",valueFormat:"percent"}]};
-            var tbdata=getDataTable(p, 'gridContainer-2',filename, cols,summarys);
-        }
-        $('#calcelqh_btn').click(function() {
-            var p = {
-                methodname: 'calcelqh',
-                parameters: '{"endtime":"' + $('#monpxzqh_dt').val() + '","qianhai":"' + $("#monpxzqh_cb").prop('checked') + '"}'
-            }
-            var filename="截止到"+$('#monpxzqh_dt').val()+"各区划存量分布"
-            var cols = ["区域","主体总量","企业","个体",{dataField:"总量市占比",format:"#.00%"},{dataField:"企业市占比",format:"#.00%"},{dataField:"个体市占比",format:"#.00%"}];
-            var summarys={texts:{count:"",sum:"{0}"},totalItems:[{column:"区域",summaryType:"count",valueFormat:"合计"},{column:"主体总量",summaryType:"sum"},{column:"企业",summaryType:"sum"},{column:"个体",summaryType:"sum"},{column:"总量市占比",summaryType:"sum",valueFormat:"percent"},{column:"企业市占比",summaryType:"sum",valueFormat:"percent"},{column:"个体市占比",summaryType:"sum",valueFormat:"percent"}]};
-            var tbdata=getDataTable(p, 'gridContainer-2',filename, cols,summarys);
-        }
-
-    </script>
-
 </body>
 
 </html>
