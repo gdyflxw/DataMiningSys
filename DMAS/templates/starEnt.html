@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Xenon Boostrap Admin Panel" />
+    <meta name="author" content="lixuanwen" />
+    <title>商事登记与代码应用研究所</title>
+    {% include "frame/Import.html" %}
+</head>
+
+<body class="page-body">
+    <div class="page-container">
+        {% include "frame/Sidebar.html" %}
+        <div class="main-content">
+            {% include "frame/Menubar.html" %}
+            <div class="panel panel-default" style="height:607px">
+                <div class="panel-heading">
+                    <h3 class="panel-title">panel标题</h3>
+                    <div class="panel-options">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tab-1" data-toggle="tab">第一页标签信息</a></li>
+                            <li><a href="#tab-2" data-toggle="tab">第二页标签信息</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab-1">
+                            <div class="row">
+                                <div class="col-sm-6" style="border-right: 1px solid #dddddd;"></div>
+                                <div class="col-sm-6"></div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab-2">                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% include "frame/Footer.html" %}
+        </div>
+    </div>
+
+</body>
+
+</html>

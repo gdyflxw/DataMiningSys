@@ -28,6 +28,16 @@ urlpatterns = [
     url(r'^stockInfo/$',views.stockInfo,name='stockInfo'),
     url(r'^incInfo/$',views.incInfo,name='incInfo'),
     url(r'^cancelInfo/$',views.cancelInfo,name='cancelInfo'),
+    url(r'^industryInfo/$',views.industryInfo,name='industryInfo'),
+    url(r'^stathy/$',views.stathy,name='stathy'),
+    url(r'^moveInfo/$',views.moveInfo,name='moveInfo'), 
+    url(r'^capitalInfo/$',views.capitalInfo,name='capitalInfo'),
+    url(r'^invFrom/$',views.invFrom,name='invFrom'),
+    url(r'^starEnt/$',views.starEnt,name='starEnt'),
+    url(r'^sifu/$',views.sifu,name='sifu'),
+    url(r'mapDetail',views.mapDetail,name='mapDetail'),
+
+
     url(r'^tmpjs/$',views.tmpjs,name='tmpjs'),
 
     #以下为API连接

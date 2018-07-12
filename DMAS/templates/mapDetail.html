@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Xenon Boostrap Admin Panel" />
+    <meta name="author" content="lixuanwen" />
+    <title>商事登记与代码应用研究所</title>
+    {% include "frame/Import.html" %}
+    
+</head>
+
+<body class="page-body">
+    <div class="page-container">
+        {% include "frame/Sidebar.html" %}
+        <div class="main-content">
+            {% include "frame/Menubar.html" %}
+            <div class="panel panel-default" style="height:607px">
+            <!--    <form class="form-inline" role="form">
+                                <div class="form-group">
+                                    <label class="control-label">起止日期</label>
+                                </div>
+                                <div class="form-group">
+                                    <div class="daterange daterange-inline add-ranges" data-format="YYYY-MM-DD" data-start-date="2014-09-15" data-end-date="2015-09-15">
+                                        <i class="fa-calendar"></i>
+                                        <span id="getmap_dr">2014-09-15 - 2015-09-15</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">主体类型</label>
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-control" id="sboxit-1">
+                                        <option value="商事主体">商事主体</option>
+                                        <option value="企业">企业</option>
+                                        <option value="个体">个体</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">行业门类</label>
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-control" id="sboxit-2">
+                                        <option value="ALL">所有行业</option>
+                                        <option value="A">农、林、牧、渔业</option>
+                                        <option value="B">采矿业</option>
+                                        <option value="C">制造业</option>
+                                        <option value="D">电力、热力、燃气及水生产和供应业</option>
+                                        <option value="E">建筑业</option>
+                                        <option value="F">批发和零售业</option>
+                                        <option value="G">交通运输、仓储和邮政业</option>
+                                        <option value="H">住宿和餐饮业</option>
+                                        <option value="I">信息传输、软件和信息技术服务业</option>
+                                        <option value="J">金融业</option>
+                                        <option value="K">房地产业</option>
+                                        <option value="L">租赁和商务服务业</option>
+                                        <option value="M">科学研究和技术服务业</option>
+                                        <option value="N">水利、环境和公共设施管理业</option>
+                                        <option value="O">居民服务、修理和其他服务业</option>
+                                        <option value="P">教育</option>
+                                        <option value="Q">卫生和社会工作</option>
+                                        <option value="R">文化、体育和娱乐业</option>
+                                        <option value="S">公共管理、社会保障和社会组织</option>
+                                        <option value="T">国际组织</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">主体状态</label>
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-control" id="sboxit-3">
+                                        <option value="商事主体">所有</option>
+                                        <option value="企业">正常</option>
+                                        <option value="个体">注吊销</option>
+                                        <option value="异常名录">异常名录</option>
+                                    </select>
+                                </div>
+                            </form>
+                    -->
+                <div id="allmap" style="overflow:hidden;zoom:1;position:relative;height: 530px;padding-top: 5px"> 
+                    <div id="map" style="height:100%;-webkit-transition: all 0.5s ease-in-out;transition: all 0.5s ease-in-out;"></div>
+                </div>
+            </div>
+            {% include "frame/Footer.html" %}
+        </div>
+    </div>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=GQBDpHmx67RcsuifDvcTVKd0XSKyGqoZ"></script>
+    <!--加载鼠标绘制工具-->
+    <script type="text/javascript" src="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.js"></script>
+    <link rel="stylesheet" href="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.css" />
+    <!--加载热力图-->
+    <script type="text/javascript" src="http://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js"></script>
+</body>
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        var btime = moment().subtract(12, 'month').format('YYYY-MM-DD');
+        var etime = moment().subtract(1, 'days').format('YYYY-MM-DD');
+        $('#getmap_dr').parent().attr('data-start-date', btime);
+        $('#getmap_dr').parent().attr('data-end-date', etime);
+        $('#getmap_dr').html(btime + ' - ' + etime);
+        $("#sboxit-1").selectBoxIt().on('open', function() {
+            $(this).data('selectBoxSelectBoxIt').list.perfectScrollbar();
+        });
+        $("#sboxit-2").selectBoxIt().on('open', function() {
+            $(this).data('selectBoxSelectBoxIt').list.perfectScrollbar();
+        });
+        $("#sboxit-3").selectBoxIt().on('open', function() {
+            $(this).data('selectBoxSelectBoxIt').list.perfectScrollbar();
+        });
+        $("#sboxit-4").selectBoxIt().on('open', function() {
+            $(this).data('selectBoxSelectBoxIt').list.perfectScrollbar();
+        });
+        $("#sboxit-5").selectBoxIt().on('open', function() {
+            $(this).data('selectBoxSelectBoxIt').list.perfectScrollbar();
+        });
+        $("#sboxit-6").selectBoxIt().on('open', function() {
+            $(this).data('selectBoxSelectBoxIt').list.perfectScrollbar();
+        });
+    });
+    // 百度地图API功能
+    var map = new BMap.Map('map');
+    var poi = new BMap.Point(114.064803,22.549054);
+    map.centerAndZoom(poi, 16);
+    map.enableScrollWheelZoom();
+    map.setMapStyle({style:'grayscale'});  
+    var overlays = [];
+    var overlaycomplete = function(e){
+        overlays.push(e.overlay);
+    };
+    var styleOptions = {
+        strokeColor:"#87CEFA",    //边线颜色。
+        fillColor:"#87CEFA",      //填充颜色。当参数为空时，圆形将没有填充效果。
+        strokeWeight: 1,       //边线的宽度，以像素为单位。
+        strokeOpacity: 0.8,    //边线透明度，取值范围0 - 1。
+        fillOpacity: 0.3,      //填充的透明度，取值范围0 - 1。
+        strokeStyle: 'solid' //边线的样式，solid或dashed。        
+    }
+    //实例化鼠标绘制工具
+    var drawingManager = new BMapLib.DrawingManager(map, {
+        isOpen: false, //是否开启绘制模式
+        enableDrawingTool: true, //是否显示工具栏
+        drawingToolOptions: {
+            anchor: BMAP_ANCHOR_TOP_RIGHT, //位置
+            offset: new BMap.Size(5, 5), //偏离值
+            drawingModes: [
+                BMAP_DRAWING_CIRCLE,
+            ]
+
+        },
+        circleOptions: styleOptions //圆的样式
+
+    });  
+
+    //添加绘制圆圈的绘制结果
+    drawingManager.addEventListener('circlecomplete', function(e, overlay) {        
+        map.clearOverlays();
+        circleLay = overlay;
+        map.addOverlay(circleLay);
+        radius = parseInt(e.getRadius());
+        center = e.getCenter();
+        searchType = 'multiple';        
+        drawingManager.close();
+        l=getsquare(center.lng,center.lat,radius)
+        alert(radius)
+        alert("lng:"+center.lng+";lat:"+center.lat)
+        var p = {
+            methodname: 'getPoint',
+            parameters: '{"minlng":"' + l[0] + '","maxlng":"' + l[1] + '","minlat":"' + l[2] + '","maxlat":"' + l[3] + '"}'
+        }
+        mdata=$.ajax({
+                url: "../apis/",
+                dataType: "json",
+                method:"POST",
+                data: p,
+                async:false,
+                }).responseJSON
+        data=mdata['items']
+        points=mdata['hotmap']
+        cpoints=[]
+        var cpointsoptions = {
+            size: BMAP_POINT_SIZE_SMALL,
+            color: '#FF7256'
+        }
+        n=0
+        for(var i=0;i<100;i++){
+            if(data[i].lng==0||data[i].lat==0 || getDistance(center.lng,center.lat,data[i].lng,data[i].lat)>radius){
+                continue;
+            }            
+            n++
+
+            var point = new BMap.Point(data[i].lng,data[i].lat);
+            cpoints.push(point);
+            if (n<100) {
+                var markerIcon = new BMap.Icon("https://api.map.baidu.com/img/markers.png", new BMap.Size(23, 25), {
+                    offset: new BMap.Size(10, 25),
+                    imageOffset: new BMap.Size(0, 0 - i * 25)
+                  });
+                
+                var marker = new BMap.Marker(point,{icon:markerIcon});  // 创建标注
+                //var marker = new BMap.Marker(point);
+                var name = data[i].jgmc.replace(/<[^>]+>/g,'');
+                
+                if(name.length>15){
+                    name = name.substring(0,14)+"...";
+                }
+                
+                marker.mcontent = '地址：'+data[i].jgdz;
+                marker.mopts = {
+                    width : 250,     // 信息窗口宽度
+                    height: 80,     // 信息窗口高度
+                    title : '<span style="color:#EE7621;font-size:14px;">'+name+'</span>' , // 信息窗口标题
+                    enableMessage:true//设置允许信息窗发送短息
+                }
+                
+                map.addOverlay(marker);             
+                marker.addEventListener("click",function(e){
+                    
+                    var infoWindow = new BMap.InfoWindow(this.mcontent,this.mopts);
+                    this.openInfoWindow(infoWindow);
+                    //map.centerAndZoom(this.getPosition(), 20);                
+
+                });
+        }
+        }
+    
+        var pointCollection = new BMap.PointCollection(cpoints, cpointsoptions);
+        pointCollection.addEventListener('click', function (e) {
+          //alert('单击点的机构名称为：' + e.point.lng + ',' + e.point.lat);  // 监听点击事件
+        });
+        map.addOverlay(pointCollection);  // 添加Overlay
+        //*热力图，在数据量较多的情况下，非常慢
+        heatmapOverlay = new BMapLib.HeatmapOverlay({"radius":20});
+        map.addOverlay(heatmapOverlay);
+        heatmapOverlay.setDataSet({data:points,max:100});
+        heatmapOverlay.show();
+       // */
+    });
+
+</script>
+
+</html>

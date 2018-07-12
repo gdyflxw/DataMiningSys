@@ -7,6 +7,7 @@ from DMAS.programs.getData import *
 def apis(requests):    
     methodname=requests.POST.get('methodname')
     parameters=json.loads(requests.POST.get('parameters'))
+    rs=None
     #登录
     if methodname=='login':
         result=login_check(parameters)
@@ -40,6 +41,34 @@ def apis(requests):
     #按行业统计注销的本期、同比、环比信息
     if methodname=='cancelhy':
         rs=cancelhy(parameters)
+
+    if methodname=='cancelqh':
+        rs=cancelqh(parameters)
+
+    if methodname=='canceldt':
+        rs=canceldt(parameters)
+
+    if methodname=='SrvIndhy':
+        rs=SrvIndhy(parameters)
+
+    if methodname=='SrvIndqh':
+        rs=SrvIndqh(parameters)
+
+    if methodname=='StatCY':
+        rs=StatCY(parameters)
+
+    if methodname=='statnwzhy':
+        rs=statnwzhy(parameters)
+
+    if methodname=='bigentInc':
+        rs=bigentInc(parameters)
+
+    if methodname=='nwzmonth':
+        rs=nwzmonth(parameters)
+
+    if methodname=='getPoint':
+        rs=getPoint(parameters)
+
 
     return HttpResponse(json.dumps(rs,ensure_ascii=False),content_type="application/json")
     

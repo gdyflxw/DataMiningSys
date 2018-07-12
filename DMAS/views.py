@@ -29,6 +29,31 @@ def incInfo(request):
 def cancelInfo(request):
     return render(request,'cancelInfo.html')
 
+def industryInfo(request):
+    return render(request,'industryInfo.html')
+
+def stathy(request):
+    return render(request,'stathy.html')
+
+def moveInfo(request):
+    return render(request,'moveInfo.html')
+
+def capitalInfo(request):
+    return render(request,'capitalInfo.html')
+
+def invFrom(request):
+    return render(request,'invFrom.html')
+
+def starEnt(request):
+    return render(request,'starEnt.html')
+
+def sifu(request):
+    return render(request,'sifu.html')
+    
+def mapDetail(request):
+    return render(request,'mapDetail.html')
+
+
 
 def tmpjs(reuqest):
     rs=json.load(open("E:/tmpjs.json",encoding='utf-8'))

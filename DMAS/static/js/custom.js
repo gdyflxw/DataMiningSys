@@ -13,9 +13,15 @@ function getCookie(name) {
         return unescape(arr[2]);
     else
         return null;
-}
+};
 //Django的X-CSRF保护机制*********************END
 
+//设置datarange的时间
+function setdr(divid,btime,etime){
+    $('#'+divid).parent().attr('data-start-date', btime);
+    $('#'+divid).parent().attr('data-end-date', etime);
+    $('#'+divid).html(btime + ' - ' + etime);
+};
 
 //获取同比环比的时间段，并返回object{nowdateB:'2018-05-01',nowdateE:'2018-05-31',lastdateB:'2018-04-01',
 //lastdateE:'2018-04-31',lastYdateB:'2017-05-01',lastYdateE:'2017-05-31'}
@@ -53,24 +59,28 @@ function getCompDate(nowdB,nowdE){
         lastYdateE=moment(nowdateE).subtract(1,'years');   
     }
     return {"nowdateB":nowdateB.format('YYYY-MM-DD'),"nowdateE":nowdateE.format('YYYY-MM-DD'),"lastdateB":lastdateB.format('YYYY-MM-DD'),"lastdateE":lastdateE.format('YYYY-MM-DD'),"lastYdateB":lastYdateB.format('YYYY-MM-DD'),"lastYdateE":lastYdateE.format('YYYY-MM-DD')}
-}
+};
 
 
 
 
 
-function getDataTable(params,divid,filename,cols,summarys){
-    var tbdata = $.ajax({
+function getDataTable(params,divid,filename,cols,summarys,tbdata=null,item='items'){
+    if(tbdata==null){
+    tbdata = $.ajax({
                 url: "../apis/",
                 dataType: "json",
                 method:"POST",
                 data: params,
                 async:false,
                 }).responseJSON
-    
+    };
     $("#"+divid).dxDataGrid({
-        dataSource: tbdata.items,
+        dataSource: tbdata[item],
         rowAlternationEnabled:true,
+        allowColumnResizing:true,
+        columnMinWidth:100,
+        columnResizingMode:"widget",
         showBorders:true,
         paging:{
             pageSize:10
@@ -88,13 +98,14 @@ function getDataTable(params,divid,filename,cols,summarys){
             showInfo:true
         },
         scrolling:{
-            columnRenderingMode:"virtual"
+            columnRenderingMode:"standard",
+            rowRenderingMode:"standard"
         },
         columns:cols,
         summary:summarys
     }).dxDataGrid("instance");
     return tbdata;
-}
+};
 
 function getPieChart(params,divid,filename,series,tbdata){
     if (tbdata==undefined) {
@@ -124,7 +135,7 @@ function getPieChart(params,divid,filename,series,tbdata){
         series:series,
     }).dxPieChart('instance')
     return tbdata;
-}
+};
 
 function getZoomLine(params,ChartDivid,RangeDivid,series,tbdata){
     if(tbdata==undefined){
@@ -175,8 +186,178 @@ function getZoomLine(params,ChartDivid,RangeDivid,series,tbdata){
             zoomedChart.zoomArgument(e.value[0],e.value[1]);            
         }
     });
-}
+};
 
+
+
+//无分组功能，无导出功能
+function getDataTable_NGE(params,divid,filename,cols,summarys,tbdata=null,item='items'){
+    if(tbdata==null){
+    var tbdata = $.ajax({
+                url: "../apis/",
+                dataType: "json",
+                method:"POST",
+                data: params,
+                async:false,
+                }).responseJSON
+    }
+    $("#"+divid).dxDataGrid({
+        dataSource: tbdata[item],
+        rowAlternationEnabled:true,
+        allowColumnResizing:true,
+        //columnMinWidth:120,
+        columnResizingMode:"widget",
+        showBorders:true,
+        paging:{
+            pageSize:20
+        },
+        scrolling:{
+            columnRenderingMode:"standard",
+            rowRenderingMode:"standard"
+        },
+        columns:cols,
+        summary:summarys
+    }).dxDataGrid("instance");
+    return tbdata;
+};
+
+//内外资走势图
+function spec_combCharts(divid,tbdata){
+$("#"+divid).dxChart({
+        dataSource: tbdata['items'],
+        commonSeriesSettings:{
+            argumentField: "统计月份s",
+            label:{
+                visible:true,
+                backgroundColor:"none",
+                connector:{
+                    visible:true
+                },
+                font:{
+                    color:"#666666"
+                }                
+            }
+        },
+        tooltip: {
+            enabled: true,
+            format: "fixedPoint"
+        },
+        panes: [{
+                name: "cnt"
+            }, {
+                name: "cap"
+            }
+            ],
+        defaultPane: "cap",
+        onTooltipShown: function (e) {
+            var point = e.target;
+            // Handler of the "tooltipShown" event
+        },
+        onTooltipHidden: function (e) {
+            var point = e.target;
+            // Handler of the "tooltipHidden" event
+        },
+        series: [{ 
+                pane: "cnt",
+                type: "bar",
+                valueField: "内资企业数量",
+                name: "内资企业数量"
+                
+            }, {
+                pane: "cnt", 
+                type:"bar",
+                valueField: "外资企业数量",
+                name: "外资企业数量"                    
+                
+            }, {
+                pane: "cap", 
+                type:"line",
+                valueField: "内资企业资金",
+                name: "内资企业资金",
+                label:{
+                    font:{
+                        size:10
+                    },                
+                    format:"thousands"
+                }
+            }, {
+                //pane: "cap", 
+                type:"line",
+                valueField: "外资企业资金",
+                name: "外资企业资金",
+                label:{
+                    font:{
+                        size:10
+                    },                
+                    format:"thousands"
+                }                   
+                
+            },
+        ],    
+        valueAxis: [{
+            pane: "cnt",
+            grid: {
+                visible: true
+            },
+            autoBreaksEnabled: true,
+            maxAutoBreakCount: 2
+        }, {
+            pane: "cap",
+            grid: {
+                visible: true
+            },
+            autoBreaksEnabled: true,
+            maxAutoBreakCount: 2
+        }],
+        legend: {
+            verticalAlignment: "bottom",
+            horizontalAlignment: "center"            
+        },
+        onLegendClick: function (e) {
+            var series = e.target;
+            if (series.isVisible()) {
+                series.hide();
+            } else {
+                series.show();
+            }
+        }
+    });
+};
+
+
+function OD(a, b, c) {
+    while (a > c) a -= c - b;
+    while (a < b) a += c - b;
+    return a;
+};
+function SD(a, b, c) {
+    a = Math.max(a, b);
+    a = Math.min(a, c);
+    return a;
+};
+function getDistance(a_lng,a_lat,b_lng,b_lat) {
+    var a = Math.PI * OD(a_lng, -180, 180) / 180;
+    var b = Math.PI * OD(b_lng, -180, 180) / 180;
+    var c = Math.PI * SD(a_lat, -74, 74) / 180;
+    var d = Math.PI * SD(b_lat, -74, 74) / 180;
+    return 6370996.81 * Math.acos(Math.sin(c) * Math.sin(d) + Math.cos(c) * Math.cos(d) * Math.cos(b-a));
+};
+
+function getsquare(lng,lat,r,type=null){
+    lng=parseFloat(lng);
+    lat=parseFloat(lat);
+    r=parseFloat(r)/1.141;
+    if(type=='json'){
+        rst={"minlng":lng-r*1.02*0.00001,"maxlng":lng+r*1.02*0.00001,"minlat":lat-r*1.11*0.00001,"maxlat":lat+r*1.11*0.00001};
+    }else{
+        rst=[lng-r*1.02*0.00001,lng+r*1.02*0.00001,lat-r*1.11*0.00001,lat+r*1.11*0.00001]
+    }
+    return rst
+};
+
+
+//使用并保留小数点后两位，单位是米
+//var m =getDistance(106.486654,29.490295,106.581515,29.615467).toFixed(2);
 
 
 

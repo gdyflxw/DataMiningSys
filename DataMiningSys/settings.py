@@ -25,7 +25,7 @@ SECRET_KEY = 'a6-w!#cd25(=m!vrgg3hkvh1ut_h+_q&g=4!c($g+&!nn!kryq'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-#LLOWED_HOSTS = ['10.204.169.71','127.0.0.1']
+ALLOWED_HOSTS = ['10.204.22.54','127.0.0.1','localhost']
 
 
 # Application definition
@@ -49,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.gzip.GZipMiddleware',
 ]
 
 ROOT_URLCONF = 'DataMiningSys.urls'

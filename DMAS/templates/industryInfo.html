@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Xenon Boostrap Admin Panel" />
+    <meta name="author" content="lixuanwen" />
+    <title>商事登记与代码应用研究所</title>
+    {% include "frame/Import.html" %}
+</head>
+
+<body class="page-body">
+    <div class="page-container">
+        {% include "frame/Sidebar.html" %}
+        <div class="main-content">
+            {% include "frame/Menubar.html" %}
+            <div class="panel panel-default" style="height:607px">
+                <div class="panel-heading">
+                    <h3 class="panel-title">产业行业统计</h3>
+                    <div class="panel-options">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tab-1" data-toggle="tab">专门专业服务企业</a></li>
+                            <li><a href="#tab-2" data-toggle="tab">非深内资产业统计</a></li>
+                            <li><a href="#tab-3" data-toggle="tab">外资产业统计</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab-1">
+                            <div class="row">
+                                <div class="col-sm-6" style="border-right: 1px solid #dddddd;">
+                                    <h4 align="center" style="color:black">专门专业行业分布</h4>
+                                    <form class="form-inline" role="form">
+                                        <div class="form-group">
+                                            <label class="control-label">起止日期</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="daterange daterange-inline add-ranges" data-format="YYYY-MM-DD" data-start-date="2014-09-15" data-end-date="2015-09-15">
+                                                <i class="fa-calendar"></i>
+                                                <span id="SrvIndhy_dr">2014-09-15 - 2015-09-15</span>
+                                            </div>
+                                        </div>
+                                        <!--<div class="form-group"></div>-->
+                                        <div class="form-group">
+                                            <label class="control-label">行政区划</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <select class="form-control" id="sboxit-1">
+                                                <option value="福田区">福田区</option>
+                                                <option value="南山区">南山区</option>
+                                                <option value="宝安区">宝安区</option>
+                                                <option value="罗湖区">罗湖区</option>
+                                                <option value="龙岗区">龙岗区</option>
+                                                <option value="大鹏区">大鹏区</option>
+                                                <option value="龙华区">龙华区</option>
+                                                <option value="盐田区">盐田区</option>
+                                                <option value="光明区">光明区</option>
+                                                <option value="坪山区">坪山区</option>
+                                                <option value="南山非前海">南山非前海</option>
+                                                <option value="南山前海">南山前海</option>
+                                                <option value="全市">全市</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group pull-right">
+                                            <button id="SrvIndhy_btn" class="btn btn-secondary btn-single" type="button">查询</button>
+                                        </div>
+                                    </form>
+                                    <div id="gridContainer-1" style="padding-top:10px;height:460px"></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <h4 align="center" style="color:black">专门专业区域分布</h4>
+                                    <form class="form-inline" role="form">
+                                        <div class="form-group">
+                                            <label class="control-label">起止日期</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <!--
+                                            <input id="xzqhpmon_dr" class="daterange daterange-inline add-ranges" data-format="YYYY-MM-DD" value="2018-04-01 - 2018-04-30" />-->
+                                            <div class="daterange daterange-inline add-ranges" data-format="YYYY-MM-DD" data-start-date="2014-09-15" data-end-date="2015-09-15">
+                                                <i class="fa-calendar"></i>
+                                                <span id="SrvIndqh_dr">2014-09-15 - 2015-09-15</span>
+                                            </div>
+                                        </div>
+                                        <!--<div class="form-group"></div>-->
+                                        <div class="form-group">
+                                            <label class="control-label">行政区划</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <select class="form-control" id="sboxit-2">
+                                                <option value="福田区">福田区</option>
+                                                <option value="南山区">南山区</option>
+                                                <option value="宝安区">宝安区</option>
+                                                <option value="罗湖区">罗湖区</option>
+                                                <option value="龙岗区">龙岗区</option>
+                                                <option value="大鹏区">大鹏区</option>
+                                                <option value="龙华区">龙华区</option>
+                                                <option value="盐田区">盐田区</option>
+                                                <option value="光明区">光明区</option>
+                                                <option value="坪山区">坪山区</option>
+                                                <option value="南山非前海">南山非前海</option>
+                                                <option value="南山前海">南山前海</option>
+                                                <option value="全市">全市</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group pull-right">
+                                            <button id="SrvIndqh_btn" class="btn btn-secondary btn-single" type="button">查询</button>
+                                        </div>
+                                    </form>
+                                    <div id="gridContainer-2" style="padding-top:10px;height:460px"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab-2">
+                            <form role="form" class="form-inline">
+                                <div class="form-group">
+                                    <label class="control-label">请输入起止日期</label>
+                                </div>
+                                <div class="form-group">
+                                    <div class="daterange daterange-inline add-ranges" data-format="YYYY-MM-DD" data-start-date="2014-09-15" data-end-date="2015-09-15">
+                                        <i class="fa-calendar"></i>
+                                        <span id="StatCYNZ_dr">2014-09-15 - 2015-09-15</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">请选择行政区划</label>
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-control" id="sboxit-3">
+                                        <option value="福田区">福田区</option>
+                                        <option value="南山区">南山区</option>
+                                        <option value="宝安区">宝安区</option>
+                                        <option value="罗湖区">罗湖区</option>
+                                        <option value="龙岗区">龙岗区</option>
+                                        <option value="大鹏区">大鹏区</option>
+                                        <option value="龙华区">龙华区</option>
+                                        <option value="盐田区">盐田区</option>
+                                        <option value="光明区">光明区</option>
+                                        <option value="坪山区">坪山区</option>
+                                        <option value="南山非前海">南山非前海</option>
+                                        <option value="南山前海">南山前海</option>
+                                        <option value="全市">全市</option>
+                                    </select>
+                                </div>
+                                <div class="form-group pull-right">
+                                    <button id="StatCYNZ_btn" class="btn btn-secondary btn-single" type="button">查询</button>
+                                </div>
+                            </form>
+                            <div class="row" style="padding-top:5px;">
+                                <div class="col-sm-6"><div id="gc3-1" style="height:140px"></div></div>
+                                <div class="col-sm-6"><div id="gc3-2" style="height:140px"></div></div>
+                            </div>
+                            <div class="row" style="padding-top:5px">
+                                <div class="col-sm-6"><div id="gc3-3" style="height:340px"></div></div>
+                                <div class="col-sm-6"><div id="gc3-4" style="height:340px"></div></div>
+                            </div>                            
+                        </div>
+                        <div class="tab-pane" id="tab-3">
+                            <form role="form" class="form-inline">
+                                <div class="form-group">
+                                    <label class="control-label">请输入起止日期</label>
+                                </div>
+                                <div class="form-group">
+                                    <div class="daterange daterange-inline add-ranges" data-format="YYYY-MM-DD" data-start-date="2014-09-15" data-end-date="2015-09-15">
+                                        <i class="fa-calendar"></i>
+                                        <span id="StatCYWZ_dr">2014-09-15 - 2015-09-15</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">请选择行政区划</label>
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-control" id="sboxit-4">
+                                        <option value="福田区">福田区</option>
+                                        <option value="南山区">南山区</option>
+                                        <option value="宝安区">宝安区</option>
+                                        <option value="罗湖区">罗湖区</option>
+                                        <option value="龙岗区">龙岗区</option>
+                                        <option value="大鹏区">大鹏区</option>
+                                        <option value="龙华区">龙华区</option>
+                                        <option value="盐田区">盐田区</option>
+                                        <option value="光明区">光明区</option>
+                                        <option value="坪山区">坪山区</option>
+                                        <option value="南山非前海">南山非前海</option>
+                                        <option value="南山前海">南山前海</option>
+                                        <option value="全市">全市</option>
+                                    </select>
+                                </div>
+                                <div class="form-group pull-right">
+                                    <button id="StatCYWZ_btn" class="btn btn-secondary btn-single" type="button">查询</button>
+                                </div>
+                            </form>
+                            <div class="row" style="padding-top:5px;">
+                                <div class="col-sm-6"><div id="gc4-1" style="height:140px"></div></div>
+                                <div class="col-sm-6"><div id="gc4-2" style="height:140px"></div></div>
+                            </div>
+                            <div class="row" style="padding-top:5px">
+                                <div class="col-sm-6"><div id="gc4-3" style="height:340px"></div></div>
+                                <div class="col-sm-6"><div id="gc4-4" style="height:340px"></div></div>
+                            </div>     
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% include "frame/Footer.html" %}
+        </div>
+    </div>
+    <script type="text/javascript">
+    jQuery(document).ready(function($) {
+        var bt = moment().subtract(12, 'month').format('YYYY-MM-DD');
+        var et = moment().subtract(1, 'days').format('YYYY-MM-DD');
+        setdr('SrvIndhy_dr', bt, et)
+        setdr('SrvIndqh_dr', bt, et)
+        setdr('StatCYNZ_dr', bt, et)
+        setdr('StatCYWZ_dr', bt, et)
+        $("#sboxit-1").selectBoxIt().on('open', function() { $(this).data('selectBoxSelectBoxIt').list.perfectScrollbar(); });
+        $("#sboxit-2").selectBoxIt().on('open', function() { $(this).data('selectBoxSelectBoxIt').list.perfectScrollbar(); });
+        $("#sboxit-3").selectBoxIt().on('open', function() { $(this).data('selectBoxSelectBoxIt').list.perfectScrollbar(); });
+        $("#sboxit-4").selectBoxIt().on('open', function() { $(this).data('selectBoxSelectBoxIt').list.perfectScrollbar(); });
+        //$("#sboxit-1").selectBoxIt().on('open', function() {$(this).data('selectBoxSelectBoxIt').list.perfectScrollbar();});
+        //$("#sboxit-1").selectBoxIt().on('open', function() {$(this).data('selectBoxSelectBoxIt').list.perfectScrollbar();});
+        //$("#sboxit-1").selectBoxIt().on('open', function() {$(this).data('selectBoxSelectBoxIt').list.perfectScrollbar();});
+        //$("#sboxit-1").selectBoxIt().on('open', function() {$(this).data('selectBoxSelectBoxIt').list.perfectScrollbar();});
+        //$("#sboxit-1").selectBoxIt().on('open', function() {$(this).data('selectBoxSelectBoxIt').list.perfectScrollbar();});
+        //$("#sboxit-1").selectBoxIt().on('open', function() {$(this).data('selectBoxSelectBoxIt').list.perfectScrollbar();});
+    });
+    $('#SrvIndhy_btn').click(function() {
+        var dic = getCompDate($('#SrvIndhy_dr').text().split(' - ')[0], $('#SrvIndhy_dr').text().split(' - ')[1])
+        dic['xzqh'] = $("#sboxit-1").parent().children("span").children("span").text()
+        var p = {
+            methodname: 'SrvIndhy',
+            parameters: JSON.stringify(dic)
+        }
+        var filename = dic['nowdateB'] + "到" + dic['nowdateE'] + "专门专业行业分布"
+        var cols = ["专门专业服务业名称", "企业数量（单位：家）", { dataField: "注册资金（单位：万元）", format: "#.00" }];
+        var summarys = { texts: { count: "", sum: "{0}" }, totalItems: [{ column: "专门专业服务业名称", summaryType: "count", valueFormat: "合计" }, { column: "企业数量（单位：家）", summaryType: "sum" }, { column: "注册资金（单位：万元）", summaryType: "sum", valueFormat: "#.00" }] };
+        show_loading_bar({
+            pct: 100,
+            delay: 1.3,
+            finish: function(pct) {
+                var tbdata = getDataTable(p, 'gridContainer-1', filename, cols, summarys);
+                hide_loading_bar();
+            }
+        });
+    });
+    $('#SrvIndqh_btn').click(function() {
+        var dic = getCompDate($('#SrvIndqh_dr').text().split(' - ')[0], $('#SrvIndqh_dr').text().split(' - ')[1])
+        dic['xzqh'] = $("#sboxit-2").parent().children("span").children("span").text()
+        var p = {
+            methodname: 'SrvIndqh',
+            parameters: JSON.stringify(dic)
+        }
+        var filename = dic['nowdateB'] + "到" + dic['nowdateE'] + "专门专业行业分布"
+        var cols = ["街道", "企业数量（单位：家）", { dataField: "注册资金（单位：万元）", format: "#.00" }];
+        var summarys = { texts: { count: "", sum: "{0}" }, totalItems: [{ column: "街道", summaryType: "count", valueFormat: "合计" }, { column: "企业数量（单位：家）", summaryType: "sum" }, { column: "注册资金（单位：万元）", summaryType: "sum", valueFormat: "#.00" }] };
+        show_loading_bar({
+            pct: 100,
+            delay: 1.3,
+            finish: function(pct) {
+                var tbdata = getDataTable(p, 'gridContainer-2', filename, cols, summarys);
+                hide_loading_bar();
+            }
+        });
+    });
+    $('#StatCYNZ_btn').click(function() {
+        var dic = getCompDate($('#StatCYNZ_dr').text().split(' - ')[0], $('#StatCYNZ_dr').text().split(' - ')[1])
+        dic['xzqh'] = $("#sboxit-3").parent().children("span").children("span").text()
+        dic['nwz']='内资'
+        var p = {
+            methodname: 'StatCY',
+            parameters: JSON.stringify(dic)
+        }
+        var filename1 = dic['nowdateB'] + "到" + dic['nowdateE'] + dic['nwz']+"制造业统计"
+        var filename2 = dic['nowdateB'] + "到" + dic['nowdateE'] + dic['nwz']+"服务业统计"
+        var filename3 = dic['nowdateB'] + "到" + dic['nowdateE'] + dic['nwz']+"战略新兴产业统计"
+        var filename4 = dic['nowdateB'] + "到" + dic['nowdateE'] + dic['nwz']+"新战略新兴产业统计"
+
+        var cols1 = [dic['nwz']+"制造业", "数量", { dataField: "注册资金", format: "#.00" }, { dataField: "数量占比", format: "#.00%" }, { dataField: "资金占比", format: "#.00%" }];
+        var cols2 = [dic['nwz']+"服务业", "数量", { dataField: "注册资金", format: "#.00" }, { dataField: "数量占比", format: "#.00%" }, { dataField: "资金占比", format: "#.00%" }];
+        var cols3 = [dic['nwz']+"战略新兴产业", "数量", { dataField: "注册资金", format: "#.00" }, { dataField: "数量占比", format: "#.00%" }, { dataField: "资金占比", format: "#.00%" }];
+        var cols4 = [dic['nwz']+"新战略新兴产业", "数量", { dataField: "注册资金", format: "#.00" }, { dataField: "数量占比", format: "#.00%" }, { dataField: "资金占比", format: "#.00%" }];
+
+        var summarys1 = { texts: { count: "", sum: "{0}" }, totalItems: [{ column: dic['nwz']+"制造业", summaryType: "count", valueFormat: "合计" }, { column: "数量", summaryType: "sum" }, { column: "注册资金", summaryType: "sum" , valueFormat: "#.00"}, { column: "数量占比", summaryType: "sum", valueFormat: "percent" }, { column: "资金占比", summaryType: "sum", valueFormat: "percent" }] };
+        var summarys2 = { texts: { count: "", sum: "{0}" }, totalItems: [{ column: dic['nwz']+"服务业", summaryType: "count", valueFormat: "合计" }, { column: "数量", summaryType: "sum" }, { column: "注册资金", summaryType: "sum" , valueFormat: "#.00"}, { column: "数量占比", summaryType: "sum", valueFormat: "percent" }, { column: "资金占比", summaryType: "sum", valueFormat: "percent" }] };
+        var summarys3 = { texts: { count: "", sum: "{0}" }, totalItems: [{ column: dic['nwz']+"战略新兴产业", summaryType: "count", valueFormat: "合计" }, { column: "数量", summaryType: "sum" }, { column: "注册资金", summaryType: "sum" , valueFormat: "#.00"}, { column: "数量占比", summaryType: "sum", valueFormat: "percent" }, { column: "资金占比", summaryType: "sum", valueFormat: "percent" }] };
+        var summarys4 = { texts: { count: "", sum: "{0}" }, totalItems: [{ column: dic['nwz']+"新战略新兴产业", summaryType: "count", valueFormat: "合计" }, { column: "数量", summaryType: "sum" }, { column: "注册资金", summaryType: "sum" , valueFormat: "#.00"}, { column: "数量占比", summaryType: "sum", valueFormat: "percent" }, { column: "资金占比", summaryType: "sum", valueFormat: "percent" }] };
+
+        show_loading_bar({
+            pct: 100,
+            delay: 1.3,
+            finish: function(pct) {
+                var tbdata = getDataTable_NGE(p, 'gc3-1', filename1, cols1, summarys1,null,'zzy');
+                getDataTable_NGE(p, 'gc3-2', filename2, cols2, summarys2,tbdata,'fwy');
+                getDataTable_NGE(p, 'gc3-3', filename3, cols3, summarys3,tbdata,'zlxx');
+                getDataTable_NGE(p, 'gc3-4', filename4, cols4, summarys4,tbdata,'cy');
+
+                hide_loading_bar();
+            }
+        });
+    });
+    $('#StatCYWZ_btn').click(function() {
+        var dic = getCompDate($('#StatCYWZ_dr').text().split(' - ')[0], $('#StatCYWZ_dr').text().split(' - ')[1])
+        dic['xzqh'] = $("#sboxit-4").parent().children("span").children("span").text()
+        dic['nwz']='外资'
+        var p = {
+            methodname: 'StatCY',
+            parameters: JSON.stringify(dic)
+        }
+        var filename1 = dic['nowdateB'] + "到" + dic['nowdateE'] + dic['nwz']+"制造业统计"
+        var filename2 = dic['nowdateB'] + "到" + dic['nowdateE'] + dic['nwz']+"服务业统计"
+        var filename3 = dic['nowdateB'] + "到" + dic['nowdateE'] + dic['nwz']+"战略新兴产业统计"
+        var filename4 = dic['nowdateB'] + "到" + dic['nowdateE'] + dic['nwz']+"新战略新兴产业统计"
+
+        var cols1 = [dic['nwz']+"制造业", "数量", { dataField: "注册资金", format: "#.00" }, { dataField: "数量占比", format: "#.00%" }, { dataField: "资金占比", format: "#.00%" }];
+        var cols2 = [dic['nwz']+"服务业", "数量", { dataField: "注册资金", format: "#.00" }, { dataField: "数量占比", format: "#.00%" }, { dataField: "资金占比", format: "#.00%" }];
+        var cols3 = [dic['nwz']+"战略新兴产业", "数量", { dataField: "注册资金", format: "#.00" }, { dataField: "数量占比", format: "#.00%" }, { dataField: "资金占比", format: "#.00%" }];
+        var cols4 = [dic['nwz']+"新战略新兴产业", "数量", { dataField: "注册资金", format: "#.00" }, { dataField: "数量占比", format: "#.00%" }, { dataField: "资金占比", format: "#.00%" }];
+
+        var summarys1 = { texts: { count: "", sum: "{0}" }, totalItems: [{ column: dic['nwz']+"制造业", summaryType: "count", valueFormat: "合计" }, { column: "数量", summaryType: "sum" }, { column: "注册资金", summaryType: "sum" , valueFormat: "#.00"}, { column: "数量占比", summaryType: "sum", valueFormat: "percent" }, { column: "资金占比", summaryType: "sum", valueFormat: "percent" }] };
+        var summarys2 = { texts: { count: "", sum: "{0}" }, totalItems: [{ column: dic['nwz']+"服务业", summaryType: "count", valueFormat: "合计" }, { column: "数量", summaryType: "sum" }, { column: "注册资金", summaryType: "sum" , valueFormat: "#.00"}, { column: "数量占比", summaryType: "sum", valueFormat: "percent" }, { column: "资金占比", summaryType: "sum", valueFormat: "percent" }] };
+        var summarys3 = { texts: { count: "", sum: "{0}" }, totalItems: [{ column: dic['nwz']+"战略新兴产业", summaryType: "count", valueFormat: "合计" }, { column: "数量", summaryType: "sum" }, { column: "注册资金", summaryType: "sum" , valueFormat: "#.00"}, { column: "数量占比", summaryType: "sum", valueFormat: "percent" }, { column: "资金占比", summaryType: "sum", valueFormat: "percent" }] };
+        var summarys4 = { texts: { count: "", sum: "{0}" }, totalItems: [{ column: dic['nwz']+"新战略新兴产业", summaryType: "count", valueFormat: "合计" }, { column: "数量", summaryType: "sum" }, { column: "注册资金", summaryType: "sum" , valueFormat: "#.00"}, { column: "数量占比", summaryType: "sum", valueFormat: "percent" }, { column: "资金占比", summaryType: "sum", valueFormat: "percent" }] };
+
+        show_loading_bar({
+            pct: 100,
+            delay: 1.3,
+            finish: function(pct) {
+                var tbdata = getDataTable_NGE(p, 'gc4-1', filename1, cols1, summarys1,null,'zzy');
+                getDataTable_NGE(p, 'gc4-2', filename2, cols2, summarys2,tbdata,'fwy');
+                getDataTable_NGE(p, 'gc4-3', filename3, cols3, summarys3,tbdata,'zlxx');
+                getDataTable_NGE(p, 'gc4-4', filename4, cols4, summarys4,tbdata,'cy');
+
+                hide_loading_bar();
+            }
+        });
+    });
+    </script>
+</body>
+
+</html>
